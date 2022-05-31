@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <title>Update user</title>
+</head>
+<body>
+    <div class="create-user-container">
+        <form action="" method="">
+          <h3 class="box-title">Update a user:</h3>
+          <div class="box-item">
+            <label class="lable-title">FirstName</label>
+            <input type="text" name="firstName" value="<%= dataUser[0].firstName %>" />
+          </div>
+          <div class="box-item">
+            <label class="lable-title">LastName</label>
+            <input type="text" name="lastName" value="<%= dataUser[0].lastName %>" />
+          </div>
+          <div class="box-item">
+            <label class="lable-title">Email:</label>
+            <input type="email" name="email" value="<%= dataUser[0].email %>" />
+          </div>
+          <div class="box-item">
+            <label class="lable-title">Address</label>
+            <input type="text" name="address" value="<%= dataUser[0].address %>" />
+          </div>
+          <div class="box-item">
+            <button style="
+            background-color: rgb(67, 67, 218);
+            color: white;
+            border-radius: 3px;
+            outline: none;
+            border: none;
+            padding: 3px 15px;
+          " class="btn-submit" type="submit">Save</button>
+          </div>
+        </form>
+    
+</body>
+</html>
