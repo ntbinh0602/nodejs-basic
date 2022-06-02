@@ -72,14 +72,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 30px;
-  }
-  
-  .upload-file-container form {
-    min-width: 800px ;
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 20px 40px;
-    background-color: rgb(188, 220, 228);
+    border: 1px solid #ccc;
   }
 
   .upload-file-func {

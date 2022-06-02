@@ -75,11 +75,10 @@ body {
   }
   
   .upload-file-container form {
-    min-width: 800px ;
     border: 1px solid #000;
     border-radius: 5px;
     padding: 20px 40px;
-    background-color: rgb(188, 220, 228);
+    background-color: #ccc;
   }
 
   .upload-file-func {

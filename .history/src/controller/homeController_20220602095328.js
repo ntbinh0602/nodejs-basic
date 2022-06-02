@@ -47,6 +47,30 @@ let getUploadFilePage = async (req, res) => {
   return res.render("uploadFile.ejs");
 };
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+
+  // By default, multer removes file extensions so let's add them back
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const imageFilter = function (req, file, cb) {
+  // Accept images only
+  if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+    req.fileValidationError = "Only image files are allowed!";
+    return cb(new Error("Only image files are allowed!"), false);
+  }
+  cb(null, true);
+};
+exports.imageFilter = imageFilter;
+
 const upload = multer().single("profile_pic");
 
 let handleUploadFile = async (req, res) => {
@@ -66,7 +90,7 @@ let handleUploadFile = async (req, res) => {
 
     // Display uploaded image for user validation
     res.send(
-      `You have uploaded this image: <hr/><img src="/image/${req.file.filename}" width="300"><hr /><a href="./upload">upload another image</a>`
+      `You have uploaded this image: <hr/><img src="/image/${req.file.filename}" width="500"><hr /><a href="./upload">Upload another image</a>`
     );
   });
 };

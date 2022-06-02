@@ -1,5 +1,6 @@
 import pool from "../configs/connectDB";
 import multer from "multer";
+import path from "path";
 
 let getHomepage = async (req, res) => {
   let data = [];
@@ -47,9 +48,26 @@ let getUploadFilePage = async (req, res) => {
   return res.render("uploadFile.ejs");
 };
 
-const upload = multer().single("profile_pic");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+
+  // By default, multer removes file extensions so let's add them back
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
 
 let handleUploadFile = async (req, res) => {
+  let upload = multer({
+    storage: storage,
+    fileFilter: helpers.imageFilter,
+  }).single("profile_pic");
+
   upload(req, res, function (err) {
     // req.file contains information of uploaded file
     // req.body contains information of text fields, if there were any
@@ -66,7 +84,7 @@ let handleUploadFile = async (req, res) => {
 
     // Display uploaded image for user validation
     res.send(
-      `You have uploaded this image: <hr/><img src="/image/${req.file.filename}" width="300"><hr /><a href="./upload">upload another image</a>`
+      `You have uploaded this image: <hr/><img src="${req.file.path}" width="500"><hr /><a href="./">Upload another image</a>`
     );
   });
 };

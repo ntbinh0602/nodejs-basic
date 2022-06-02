@@ -7,7 +7,7 @@ let router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, appRoot + "/src/public/image/");
+    cb(null, "uploads/");
   },
 
   // By default, multer removes file extensions so let's add them back
@@ -39,11 +39,7 @@ const initWebRoute = (app) => {
   router.get("/edit-user/:id", homeController.getEditPage);
   router.post("/update-user", homeController.updateUser);
   router.get("/upload", homeController.getUploadFilePage);
-  router.post(
-    "/upload-profile-pic",
-    upload.single("profile_pic"),
-    homeController.handleUploadFile
-  );
+  router.post("/upload-profile-pic", homeController.handleUploadFile);
   router.get("/about", (req, res) => {
     res.send("HELO AHA");
   });

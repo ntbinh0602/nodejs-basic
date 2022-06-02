@@ -75,7 +75,7 @@ body {
   }
   
   .upload-file-container form {
-    min-width: 800px ;
+    width: 800px ;
     border: 1px solid #000;
     border-radius: 5px;
     padding: 20px 40px;
