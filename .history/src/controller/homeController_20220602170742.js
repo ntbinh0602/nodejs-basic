@@ -59,7 +59,7 @@ let handleUploadFile = async (req, res) => {
   );
 };
 
-let handleUploadMultipleFile = async (req, res) => {
+let handleUploadMultipleFile = async (req, res, error) => {
   if (req.fileValidationError) {
     return res.send(req.fileValidationError);
   } else if (!req.files) {
